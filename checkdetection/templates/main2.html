@@ -1,0 +1,41 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+        background-image: url('{% static "images/bg.jpg" %}');
+        background-size: 100%;     
+        background-repeat: no-repeat;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Cheque Detection</title>
+</head>
+<body>
+    <h1 style="text-align: center; color: rgb(43, 226, 202);font-size: 35px;font-weight: 600;">Cheque Detection</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="frame">
+            <div class="center">
+                <div class="title">
+                    <h1 style="color:rgb(201, 95, 246);font-weight: 600;">Browse file to upload</h1>
+                </div>
+        
+                <div >
+                    {% csrf_token %}
+                    <div>{{form.check_img|as_crispy_field}}</div>
+                    <br>
+                    <div>{{form.back_check_img|as_crispy_field}}</div>
+                </div>
+        
+                <button type="submit" class="btn" name="uploadbutton">Upload file</button>
+        
+            </div>
+        </div>
+    </form>
+</body>
+</html>

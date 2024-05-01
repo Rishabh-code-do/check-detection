@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            background-color: #acb6e5;
+            background-image: linear-gradient(45deg,#acb6e5,#86fde8);
+        }
+        div.gallery{
+            margin: 5px;
+            border: 1px solid #ccc;
+            float: left;
+            align-content: center;
+            width: 700px;
+        }
+        div.gallery img{
+            width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        {% if Valid %}
+        <h1>Valid</h1>
+        {% else %}
+        <h1>Invalid</h1>
+        {% endif %}
+    </div>
+    <div>
+        <h3>Amount: {{amount}}</h3>
+        <h3>Cheque No. :{{leaf_no}}</h3>
+        <h3>Ac No. :{{ac}}</h3>
+        <h3>Account:{{account}}</h3>
+        <h3>Phone No. :{{phone}}</h3>
+    </div>
+    <div>
+        <h3>Payee Name: {{payee_name}}</h3>
+        {% if name %}
+        <h3>Name: {{name}}</h3>
+        {% endif %}
+        <h3>Payee Amount : {{payee_amt}}</h3>
+        <h3>IFSC: {{ifsc}}</h3>
+        <h3>Bank Name: {{bank}}</h3>
+    </div>
+    <h1>Uploaded Check</h1>
+    <div>
+    <div class="gallery">
+        <img src="{{checks.check_img.url}}"/>
+    </div>
+    <div class="gallery">
+        <img src="{{checks.back_check_img.url}}"/>
+    </div>
+    </div>
+</body>
+</html>

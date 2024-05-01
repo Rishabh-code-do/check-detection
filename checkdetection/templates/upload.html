@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    p.success {
+      text-align: center;
+      margin: 20px 0 60px;
+      font-size: 1.25em;
+      color: #73AF55;
+    }
+
+    p.error {
+      text-align: center;
+      margin: 20px 0 60px;
+      font-size: 1.25em;
+      color: #D06079;
+    }
+    .hero-section{
+    background-image: url('{% static "images/hero-img.png" %}');
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-size: 220vh;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/markstyle.css' %}">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="hero-section">
+    <div class="hero-row-1">
+      {% if Valid %}
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+        <circle class="circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1"
+          r="62.1" />
+        <polyline class="check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round"
+          stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
+      </svg>
+      <p class="success">Valid!</p>
+      {% else %}
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+        <circle class="circle" fill="none" stroke="#D06079" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1"
+          r="62.1" />
+        <line class="line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"
+          x1="34.4" y1="37.9" x2="95.8" y2="92.3" />
+        <line class="line" fill="none" stroke="#D06079" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"
+          x1="95.8" y1="38" x2="34.4" y2="92.2" />
+      </svg>
+      <p class="error">InValid!</p>
+      {% endif %}
+    </div>
+    <div class="container" style="display: flex; gap: 20px; padding-bottom: 220px;">
+      <div class="container-row-1">
+        <h2 style="margin-left:68px;">Front Cheque Details</h2>
+        <table class="center" style="margin-left:70px;">
+          <tr>
+            <td >Payee Name</td>
+            <td>{{payee_name}}</td>
+          </tr>
+          <tr>
+            <td>Payee Amount</td>
+            <td>{{payee_amt}}</td>
+          </tr>
+          <tr>
+            <td>Amount</td>
+            <td>{{amount}}</td>
+          </tr>
+          <tr>
+            <td>MICR Code</td>
+            <td>{{leaf_no}}</td>
+          </tr>
+          <tr>
+            <td>Account Number</td>
+            <td>{{ac}}</td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td>{{date}}</td>
+          </tr>
+          <tr>
+            <td>IFSC</td>
+            <td>{{ifsc}}</td>
+          </tr>
+          <tr>
+            <td>Bank Name</td>
+            <td>{{bank}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="container-row-2">
+        <h2>Back Cheque Details</h2>
+        <table class="center" >
+          <tr>
+            <td>Name</td>
+            <td>{{name}}</td>
+          </tr>
+          <tr>
+            <td>Account No.</td>
+            <td>{{account}}</td>
+          </tr>
+          <tr>
+            <td>Phone No.</td>
+            <td>{{phone}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="cheque-container" style="display: flex; gap: 40px; margin-top: 10px;">
+      <div class="cheque-row-1">
+        <h3 style="margin-left:60px;">Front Cheque Image</h3>
+        <img src="{{checks.check_img.url}}" style="height: 250px; margin-left:50px;"/>
+      </div>
+      <div class="cheque-row-1">
+        <h3 style="margin-left:10px;">Back Cheque Image</h3>
+        <img src="{{checks.back_check_img.url}}" style="height:250px;"/>
+      </div>
+    </div>
+  </div>
+  
+
+</body>
+</body>
+
+</html>

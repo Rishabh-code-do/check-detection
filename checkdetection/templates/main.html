@@ -1,0 +1,58 @@
+{% load static %} {% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .container {
+        display: flex;
+        background-image: url('{% static "images/header-bg-shape.png" %}');
+        background-size: cover;
+        background-position: top 25% right 0;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}" />
+  </head>
+  <body>
+    <section id="header">
+      {% comment %}
+      <a href="/"
+        ><img src="{% static 'images/logo1.png' %}" alt="" class="logo"
+      /></a>
+      {% endcomment %}
+      <h1>Cheque Detection</h1>
+    </section>
+
+    <section class="container">
+      <div class="row-1">
+        <h1 style="margin-left: 85px">
+          Upload your cheque here...<br /><br />
+        </h1>
+        <div class="wrapper">
+          <form method="post" enctype="multipart/form-data">
+            <div>
+              {% csrf_token %}
+              <div class="label-txt">{{form.check_img|as_crispy_field}}</div>
+              <br />
+              <br />
+              <div class="label-txt">
+                {{form.back_check_img|as_crispy_field}}
+              </div>
+            </div>
+
+            <button type="submit" class="btn" name="uploadbutton">
+              Upload file
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- <img class="container-1" src="images/header-hero.png" alt=""> -->
+      <div class="row-2">
+        <img src="{% static 'images/header-hero.png' %}" alt="" />
+      </div>
+    </section>
+  </body>
+</html>

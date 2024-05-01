@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        #hero {
+        display: flex;
+        background-image: url('{% static "images/header-bg-shape.png" %}');
+        background-size: cover;
+        background-position: top 25% right 0;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <!-- <link rel="stylesheet" text="text/CSS"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"> -->
+    <!-- <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"> -->
+    <!-- <link rel="stylesheet" text="text/CSS"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"> -->
+    <!-- <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"> -->
+    <link rel="stylesheet" text="text/CSS"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- <section id="header">
+        <a href="#"><img src="{% static 'images/logo1.png' %}" alt="" class="logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact </a></li>
+            </ul>
+        </div>
+    </section> -->
+
+    <section id="hero">
+        <div class="hero-row-1">
+            <h2>Automatic</h2>
+            <h2>Cheque Detection</h2>
+            
+            <h3><br><br><br>Upload Your Cheque here:</h3>
+            <a href="main"><button>Upload </button></a>
+        </div>
+        <div class="hero-row-2">
+            <img src="{% static 'images/header-hero.png' %}" alt="">
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h1>ABOUT US</h1>
+        <div class="max-width">
+            <div class="photo"><img src="{% static 'images/about.jpg' %}" alt="" height="300px" width="330px">
+            </div>
+            <div class="about-content">
+                <p class="text-1"> We are a team of open source contributors who have created this
+                    website Automatic Cheque Verification System 
+                    with the aim to provide a <span>one step solution</span> to Verifying Cheques using a scanned cheque image. </p>
+                <p class="text-3">We hope that you contribute to us by connecting with us on our provided links. <span>Have a great Day!
+                    </span></p>
+            </div>
+        </div>
+        <h3><span style="color: black;">MEET OUR MEMBERS</span></h3>
+
+        <div class="box">
+            {% comment %} <div ddata-aos-duration="800" class="card">
+                <img src="{% static 'images/Shailly.png' %}" alt="ronak" loading="lazy">
+                <h5>Shailly Raj</h5>
+                <div class="pra">
+                    <p>Head of The Team</p>
+                    <a href=#><button>Let's Connect</button></a>
+                </div>
+            </div> {% endcomment %}
+            <div data-aos-duration="800" class="card">
+                <img src="{% static 'images/rishabh.jpeg' %}" alt="chaitri" loading="lazy" style="object-fit: contain;">
+                <h5>Rishabh Jaiswal</h5>
+                <div class="pra">
+                    <p class="p">Member</p>
+                    <a href=# ><button class="he">Let's Connect</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <!--logo and info column-->
+            <div class="col">
+                <!--logo insert-->
+                <div class="footercontent">
+                    <!-- <h2 class="footerheading">Sukoon</h2>
+              <p class="footerpara">go stressfree</p> -->
+                </div>
+            </div>
+
+            <!--ADDRESS COLUMN-->
+
+            <div class="footer-side-col">
+                <div class="col">
+                    <h3>
+                        Email Address
+                        <div class="underline"><span></span></div>
+                        <a href="">rishabhjais01234@gmail.com</a>
+                    </h3>
+                </div>
+                
+                <!--CONTACTS COLUMN-->
+                <div class="col">
+                    <h3>
+                        CONTACTS
+                        <div class="underline"><span></span></div>
+                    </h3>
+                    <div class="social-menu">
+                        <ul>
+                            <a href=# target="_blank">
+                                <li><i class="fab fa-2x fa-twitter"></i></li>
+                            </a>
+                            <a href=# target="_blank">
+                                <li><i class="fab fa-2x fa-github"></i></li>
+                            </a>
+                            <a href=# target="_blank">
+                                <li><i class="fab fa-2x fa-linkedin-in"></i></li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

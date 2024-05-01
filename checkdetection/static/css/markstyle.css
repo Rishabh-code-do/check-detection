@@ -1,0 +1,117 @@
+svg {
+  width: 60px;
+  display: block;
+  margin: 40px auto 0;
+}
+
+  .circle {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    -webkit-animation: dash .9s ease-in-out;
+    animation: dash .9s ease-in-out;
+  }
+  .line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    stroke-dashoffset: 1000;
+    -webkit-animation: dash .9s .35s ease-in-out forwards;
+    animation: dash .9s .35s ease-in-out forwards;
+  }
+  .check {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    stroke-dashoffset: -100;
+    -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+    animation: dash-check .9s .35s ease-in-out forwards;
+  }
+
+/* p {
+  text-align: center;
+  margin: 20px 0 60px;
+  font-size: 1.25em;
+  p.success {
+    text-align: center;
+  margin: 20px 0 60px;
+  font-size: 1.25em;
+    color: #73AF55;
+  }
+  p.error {
+    text-align: center;
+  margin: 20px 0 60px;
+  font-size: 1.25em;
+    color: #D06079;
+  }
+} */
+
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+table, th, td {
+  border:3px solid black;
+  border-collapse: collapse;
+}
+table td{
+  padding: 10px;
+}
+/* .center{
+  margin-left: auto;
+  margin-right: auto; 
+} */
+
+.container{
+  background-color: white;
+  margin-left: 40vh;
+  margin-right: 40vh;
+  height: 40vh;
+  padding-top: 90px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-evenly;
+}
+.cheque-container{
+  display: flex;
+  margin: 60px 30px 30px 30px;
+  width: 100%;
+}
+.cheque-row-1{
+  margin: 30px;
+}
+.cheque-row-1 img{
+  width: 85%;
+  height: 30px;
+}

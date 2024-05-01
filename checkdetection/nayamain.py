@@ -1,0 +1,114 @@
+from process_cheque import front_process,back_process
+import os
+import cv2 as cv
+import pandas as pd
+from words2num import parse_int
+#from sign import signv
+import argparse
+import process_back_details
+import time
+from process_back_details import pr
+
+def verify(db1,amount,payee_name,leaf_no,payee_amt):
+    curr_amt=int(db1['current_amount'].values)
+    leaves_left=int(db1['cheque_issued'].values)
+    verify_dict={
+        'sufficient_funds' : 0,
+        'MICR CODE' :0,
+        'NFT/RTGS':0,
+        'amount_in_words':0,
+        'valid':0,
+        'invalid':0
+    }
+    x=['self','myself']
+    if(curr_amt>=amount):
+        # print("Cannot proceed transaction : INSUFFINIENT FUNDS")
+        # return 0
+        verify_dict['sufficient_funds']=1
+    else:
+        verify_dict['invalid']=1
+    if(leaves_left>=leaf_no):
+        # print("Invalid Cheque Number")
+        # return 0
+        verify_dict['MICR CODE']=1
+    else:
+        verify_dict['invalid']=1
+    if(payee_name in x):
+        # print("This cheque is for NEFT/RTGS transaction")
+        # return 0
+        verify_dict['NFT/RTGS']=1
+    y=parse_int(payee_amt)
+    if(y==amount):
+        verify_dict['amount_in_words']=1
+    else:
+        verify_dict['invalid']=1
+    if(verify_dict['invalid']==0):
+        verify_dict['valid']=1
+    return verify_dict
+
+def FUN(str,str3):
+    t1=time.time()
+    str1=str[1:]
+    raw_s=r'{}'.format(str1)
+    print(raw_s)
+    img=cv.imread(raw_s)
+    size=img.shape
+    date,amount,bank,ifsc,payee_name,payee_amt,ac,leaf_no=front_process(img,size)
+
+    db=pd.read_csv(r"chequedb12.csv")
+    db1=db.loc[db['account_no']==ac]
+    front_ver=verify(db1,amount,payee_name,leaf_no,payee_amt)
+    if(front_ver['valid']==1):
+        print("Front of the cheque is verified")
+        print("Date : ",date,"\nAmount : ",amount,"\nBank Name : ",bank,"\nIFSC code : ",ifsc,"\nPayee Name : ",payee_name,"\nPayee Amount : ",payee_amt,"\nAcount Number : ",ac,"\nMICR code : ",leaf_no)
+        str2=str3[1:]
+        raw_s1=r'{}'.format(str2)
+        back=cv.imread(raw_s1)
+        size=img.shape
+        back_ocr,back_detect=back_process(back,size)
+        account,phone,name=pr(back_ocr)
+        flag=int(0)
+        payee_db=pd.read_csv(r"Payee_Database.csv")
+        back_ver={
+            'back_account' : 0,
+            'back_phone':0,
+            'back_name':0,
+            'invalid':0,
+            'valid':0
+        }
+        if(account and name):
+            db2=payee_db.loc[payee_db['account number']==int(account)]
+            verify_name=db2['Name'].values
+            verify_name=(''.join(verify_name))
+            if(verify_name==name):
+                back_ver['back_account']=1
+            else:
+                back_ver['invalid']=1
+        if(phone and name):
+            db2=payee_db.loc[payee_db['Phone Number']==int(phone)]
+            verify_name=db2['Name'].values
+            verify_name=(''.join(verify_name))
+            if(verify_name==name):
+                back_ver['back_phone']=1
+            else:
+                back_ver['invalid']=1
+        if(back_ver['invalid']==0):
+            back_ver['valid']=1
+            print("Back of the cheque is Verified.")
+            print("Name : ",name,"\nAccount Number of Payee : ",account,"\nPhone Number of Payee : ",phone)
+        # if(flag!=0):
+        #     print("Back of the cheque is Verified.")
+        #     print("Name : ",name,"\nAccount Number of Payee : ",account,"\nPhone Number of Payee : ",phone)
+        # if(flag==0):
+        #     print("Back of the cheque is not verified.")
+        #     print("Name : ",name,"\nAccount Number of Payee : ",account,"\nPhone Number of Payee : ",phone)
+        
+    t2=time.time()
+    print("Time Taken : ",t2-t1)
+    return front_ver,date,amount,bank,ifsc,payee_name,payee_amt,ac,leaf_no,back_ver,account,phone,name
+    #sign section
+    # imgs2 = cv.imread("r"+"str1")
+    # path=r'sign_directory'
+    # dir_path=os.path.join(path,str(ac))
+
+    # print(signv(r"Images\sign.jpeg",dir_path+('.jpeg')))
